@@ -1,12 +1,17 @@
 import React from 'react'
+import Modal from './Modal'
 
 export default function WorkoutCard(props) {
     const { trainingPlan, workoutIndex, type, dayNum, icon } = props
-    const {warmup, workout} = trainingPlan || {}       
 
+    const {warmup, workout} = trainingPlan || {}
+
+    const showExerciseDescription = {name: 'jfp', description: 'lsdkjf'}
 
     return (
     <div className="workout-container">
+        <Modal showExerciseDescription={showExerciseDescription}
+            handleClosedModal={() => {}}/>
             <div className="workout-card card">
                 <div className="plan-card-header">
                     <p>Day {dayNum} </p>
@@ -19,7 +24,7 @@ export default function WorkoutCard(props) {
             
 
         <div className="workout-grid">
-            <div classname="exercise-name">
+            <div className="exercise-name">
                 <h4>Warmup</h4>
             </div>
             <h6>Sets</h6>
@@ -28,14 +33,14 @@ export default function WorkoutCard(props) {
             {warmup.map((warmupExercise, warmupIndex) => {
                 return(
                     <React.Fragment key={warmupIndex}>
-                        <div clasName="exercise-name">
+                        <div className="exercise-name">
                             <p>{warmupIndex + 1}. {warmupExercise.name}</p>
-                            <button classname="help-icon">
+                            <button className="help-icon">
                                 <i className="fa-solid fa-circle-question"/>
                             </button>
                          </div>
-                            <p classname="exercise-info">{warmupExercise.sets}</p>
-                            <p classname="exercise-info">{warmupExercise.reps}</p>
+                            <p className="exercise-info">{warmupExercise.sets}</p>
+                            <p className="exercise-info">{warmupExercise.reps}</p>
                             <input className="weight-input" placeHolder="N/A" 
                             disabled />
 
@@ -47,7 +52,7 @@ export default function WorkoutCard(props) {
         </div>
 
         <div className="workout-grid">
-            <div classname="exercise-name">
+            <div className="exercise-name">
                 <h4>Workout</h4>
             </div>
             <h6>Sets</h6>
@@ -56,15 +61,15 @@ export default function WorkoutCard(props) {
             {workout.map((workoutExercise, workoutIndex) => {
                 return(
                     <React.Fragment key={workoutIndex}>
-                        <div clasName="exercise-name">
+                        <div className="exercise-name">
                             <p>{workoutIndex + 1}. {workoutExercise.name}</p>
-                            <button classname="help-icon">
+                            <button className="help-icon">
                                 <i className="fa-solid fa-circle-question"/>
                             </button>
                          </div>
-                            <p classname="exercise-info">{workoutExercise.sets}</p>
-                            <p classname="exercise-info">{workoutExercise.reps}</p>
-                            <input className="weight-input" placeHolder="10"/>
+                            <p className="exercise-info">{workoutExercise.sets}</p>
+                            <p className="exercise-info">{workoutExercise.reps}</p>
+                            <input className="weight-input" placeholder="10"/>
 
 
                     </React.Fragment>
