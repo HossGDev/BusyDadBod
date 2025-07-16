@@ -2,12 +2,12 @@ import { workoutProgram as training__plan } from '../utils/index.js'
 import WorkoutCard from './WorkoutCard.jsx'
 
 export default function Grid() {
-    const isLocked = true 
-    const selected_workout = 4
+    const isLocked = false
+    const selectedWorkout = 5
 
 
     return (
-        <div className="training-grid-plan">
+        <div className="training-plan-grid">
             {Object.keys(training__plan).map((workout, workoutIndex) => {
                 const type =  workoutIndex % 3 === 0 ?
                     'Push' : 
@@ -30,7 +30,7 @@ export default function Grid() {
                             
                         
                  
-                 if (workoutIndex === selected_workout) {
+                 if (workoutIndex === selectedWorkout) {
                     return (
                         <WorkoutCard key={workoutIndex} trainingPlan={trainingPlan}
                         type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum} />
