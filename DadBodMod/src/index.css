@@ -208,7 +208,7 @@ button.help-icon:hover {
     gap: 1rem;
 }
 
-@media (min-width: 640px;) {
+@media (min-width: 640px) {
     body {
         gap: 2rem;
         padding: 2rem 0;
