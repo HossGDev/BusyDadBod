@@ -107,7 +107,7 @@ return (
                 <button onClick={() => {
                     handleSave(workoutIndex, {weights})
                 }}> Save & Exit </button>                          
-                <button onclick={() => {
+                <button onClick={() => {
                    handleComplete(workoutIndex, {weights})
                 }} disabled={Object.keys(weights).length != workout.length}>Complete</button>
             </div>
