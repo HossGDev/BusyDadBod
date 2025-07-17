@@ -5,9 +5,8 @@ import WorkoutCard from './WorkoutCard.jsx'
 export default function Grid() {
     const [savedWorkouts,setSavedWorkouts] = useState(null)
     const [selectedWorkout, setSelectedWorkout] = useState(null)
-    const completedWorkout = Object.keys(savedWorkouts || {}).filter[(value)=>{}]
     const completedWorkouts = Object.keys(savedWorkouts || {}).filter((key) => {
-        const enttry = savedWorkouts[val]
+        const entry = savedWorkouts[val]
         return entry.iscomplete
     })
 
@@ -46,7 +45,7 @@ export default function Grid() {
         <div className="training-plan-grid">
             {Object.keys(training_plan).map((workout, workoutIndex) => {
                 const isLocked = workoutIndex == 0 ? false :
-                !compltetedWorkouts.includes('${workoutIndex - 1}')
+                !completedWorkouts.includes('${workoutIndex - 1}')
                 console.log(workoutIndex, isLocked)
 
                 const type =  workoutIndex % 3 === 0 ?

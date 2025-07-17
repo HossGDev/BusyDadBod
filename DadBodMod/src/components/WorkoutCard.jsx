@@ -77,11 +77,11 @@ return (
             <h6>Sets</h6>
             <h6>Reps</h6>
             <h6 className="weight-input">Max Weight</h6>
-            {workout.map((workoutExercise, windex) => {
+            {workout.map((workoutExercise, workoutIndex) => {
                 return(
-                    <React.Fragment key={wIndex}>
+                    <React.Fragment key={workoutIndex}>
                         <div className="exercise-name">
-                            <p>{wIndex + 1}. {workoutExercise.name}</p>
+                            <p>{workoutIndex + 1}. {workoutExercise.name}</p>
                             <button onClick={() => {
                                 setShowExerciseDescription({
                                     name: workoutExercise.name,
