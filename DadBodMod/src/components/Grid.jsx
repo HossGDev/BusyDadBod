@@ -1,14 +1,54 @@
+import {useState, useEffect, useSyncExternalStore} from 'react'
 import { workoutProgram as training_plan } from '../utils/index.js'
 import WorkoutCard from './WorkoutCard.jsx'
 
 export default function Grid() {
-    const isLocked = false
-    const selectedWorkout = 5
+    const [savedWorkouts,setSavedWorkouts] = useState(null)
+    const [selectedWorkout, setSelectedWorkout] = useState(null)
+    const completedWorkout = Object.keys(savedWorkouts || {}).filter[(value)=>{}]
+    const completedWorkouts = Object.keys(savedWorkouts || {}).filter((key) => {
+        const enttry = savedWorkouts[val]
+        return entry.iscomplete
+    })
 
+    function handleSave(index, data) {
+        // save to local storage and modify the saved workouts state
+        const newObj = {
+            ...savedWorkouts,
+            [index]: {
+                ...data,
+                isComplete: !!data.isComplete || !!savedWorkouts?.[index]?.
+                isComplete
+            }
+        }
+        setSavedWorkouts(newObj)
+        localStorage.setItem('busyDadBod',JSON.stringify(newObj) )
+        setSelectedWorkout(null)
+}
+
+    function handleComplete(index, data) {
+        // complete a workout (modify complted status)
+        const newObj = { ...data }
+        newObj.isComplete = true
+        handleSave(index, newObj)
+    }
+
+    useEffect(() => {
+        if (!localStorage) { return}
+        let savedData = {}
+        if (localStorage.getItem('busyDadBod')) {        
+            savedData = JSON.parse(localStorage.getItem('busyDadBod'))
+        } 
+        setSavedWorkouts(savedData)       
+    }, []) 
 
     return (
         <div className="training-plan-grid">
             {Object.keys(training_plan).map((workout, workoutIndex) => {
+                const isLocked = workoutIndex == 0 ? false :
+                !compltetedWorkouts.includes('${workoutIndex - 1}')
+                console.log(workoutIndex, isLocked)
+
                 const type =  workoutIndex % 3 === 0 ?
                     'Push' : 
                         workoutIndex % 3 ===1 ? 
@@ -32,13 +72,18 @@ export default function Grid() {
                  
                  if (workoutIndex === selectedWorkout) {
                     return (
-                        <WorkoutCard key={workoutIndex} trainingPlan={trainingPlan}
+                        <WorkoutCard savedWeight={savedWorkouts?.[workoutIndex]?.weights}
+                        handleSave={handleSave} handleComplete={handleComplete}
+                         key={workoutIndex} trainingPlan={trainingPlan}
                         type={type} workoutIndex={workoutIndex} icon={icon} dayNum={dayNum} />
                     )
                  }
                  
                  return (                
-                    <button className={'card plan-card ' + (isLocked ? 'inactive' 
+                    <button onClick={() => {
+                        if (isLocked) { return }
+                        setSelectedWorkout(workoutIndex)
+                    }} className={'card plan-card ' + (isLocked ? 'inactive' 
                     :'')} key={workoutIndex}>
 
                         <div className='plan-card-header'>
