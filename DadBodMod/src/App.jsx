@@ -1,7 +1,7 @@
 import Layout from './components/Layout.jsx';
 import Grid from './components/Grid.jsx';
 import Hero from './components/Hero.jsx';
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
   return (
